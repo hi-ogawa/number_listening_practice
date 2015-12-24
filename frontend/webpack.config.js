@@ -1,16 +1,17 @@
 module.exports = {
   entry: "./app/App.js",
   output: {
-    filename: "public/bundle.js"
+    path: __dirname + "/build",
+    filename: "bundle.js"
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
+        loader: "babel",
         query: {
-          presets: ['react', 'es2015']
+          presets: ["react", "es2015"]
         }
       }
     ]
