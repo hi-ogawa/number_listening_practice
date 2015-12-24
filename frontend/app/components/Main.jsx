@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-export var Main = React.createClass({
+var Main = React.createClass({
   render() {
     return (
       <div className="main-container">
@@ -11,3 +11,5 @@ export var Main = React.createClass({
     );
   }
 });
+
+export default Main;

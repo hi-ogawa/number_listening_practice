@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-export var Home = React.createClass({
+var Home = React.createClass({
   render() {
     return (
       <h2 className="text-center">
@@ -9,3 +9,5 @@ export var Home = React.createClass({
     );
   }
 });
+
+export default Home;
