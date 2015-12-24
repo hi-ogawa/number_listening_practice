@@ -1,3 +1,5 @@
+require("!style!css!less!bootstrap/less/bootstrap.less");
+
 import React from "react"
 import ReactDOM from "react-dom"
 import { Main } from "./components/Main.jsx"
