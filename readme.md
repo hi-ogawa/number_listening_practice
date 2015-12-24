@@ -10,7 +10,7 @@
 
 ### frontend
 
-- speech systhesis api
+- speech systhesis api: https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API?hl=en
 - visiualization of score
 - ...
 
