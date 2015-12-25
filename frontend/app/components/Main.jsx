@@ -37,4 +37,4 @@ Main.propTypes = {
   onButtonClick: React.PropTypes.func.isRequired
 };
 
-export default connect(stateProps, dispatchProps)(Main)
+export default connect(stateProps, dispatchProps)(Main);
