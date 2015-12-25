@@ -18,9 +18,22 @@ const dispatchProps = (dispatch) => {
   }
 };
 
-console.log(template);
+// import Async from "../Async/Async"
+// const Main = (props) => {
+//   return (
+//     <div>
+//       <p>
+//         {props.pressed ? "true" : "false"}
+//       </p>
+//       Hello, easy component syntax.
+//       <button
+//         onClick={props.onButtonClick}
+//       > + </button>
+//       <Async />
+//     </div>
+//   )
+// }
 const Main = (props) => template.call(props)
-// const Main = (props) => template.call(props)
 
 // NOTE: proptypes is not mandatory with react-redux?
 Main.propTypes = {

@@ -13,7 +13,6 @@ ReactDOM.render(
   <Provider store={createStore(rootReducer)}>
     <div>
       <Main />
-      <Async />
     </div>
   </Provider>,
   document.getElementById("app")
