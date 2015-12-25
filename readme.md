@@ -20,4 +20,11 @@
 - login/logout session CRUD
 - user's score CRUD
 - kinds of cool calculation of learning data
+  - find out weak point
 - ...
+
+
+### previous version
+
+- http://hi-ogawa.github.io/randomNumberGenerator/
+- http://screencast.com/t/9QBRWlFG4G0
