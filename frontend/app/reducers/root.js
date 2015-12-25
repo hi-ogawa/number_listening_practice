@@ -1,24 +1,23 @@
 import {combineReducers} from "redux";
 
-const mainInitialState = {
-  pressed: true
-}
-
-const main = (state = mainInitialState, action) => {
+const main = (state = {pressed: true}, action) => {
   switch (action.type) {
-  case "button":
+  case "TOGGLE_BUTTON":
     return {pressed: !state.pressed};
   default:
     return state;
   }
 }
 
-// TODO: follow this: http://rackt.org/redux/docs/advanced/AsyncActions.html
 const async = (state = {requestState: "NOT_STARTED"}, action) => {
   switch (action.type) {
-  case "throwRequest":
-    console.log("request throwed")
+  case "THROW_REQUEST":
     return {requestState: "STARTED"};
+  case "RECEIVE_REQUEST":
+    return {
+      requestState: (action.status === "success" ? "FINISHED" : "ERROR"),
+      resp: action.resp
+    };
   default:
     return state;
   }

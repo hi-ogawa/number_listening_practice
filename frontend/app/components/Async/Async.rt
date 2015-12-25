@@ -1,3 +1,10 @@
 <div>
   <button onClick={this.onRequestButtonClick}> Start Request </button>
+  <p rt-if="this.requestState == 'NOT_STARTED'"> not started </p>
+  <p rt-if="this.requestState == 'STARTED'"> started </p>
+  <p rt-if="this.requestState == 'FINISHED'">
+    finished
+    <img src={this.resp.data.avatar_url}>
+  </p>
+  <p rt-if="this.requestState == 'ERROR'"> error </p>
 </div>

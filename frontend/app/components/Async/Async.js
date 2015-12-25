@@ -6,7 +6,8 @@ import {throwRequest} from "../../actions/root";
 
 const stateProps = (state) => {
   return {
-    requestState: state.async.requestState
+    requestState: state.async.requestState,
+    resp: state.async.resp
   }
 };
 
@@ -19,8 +20,10 @@ const dispatchProps = (dispatch) => {
 };
 
 const Async = (props) => template.call(props)
+
 Async.propTypes = {
   requestState: React.PropTypes.string.isRequired,
+  resp: React.PropTypes.object,
   onRequestButtonClick: React.PropTypes.func.isRequired
 };
 
