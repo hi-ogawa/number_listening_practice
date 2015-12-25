@@ -1,0 +1,5 @@
+<!-- <rt-require dependency="../Main/Main.js" as="Main"/> -->
+<div>
+  <button onClick={this.onRequestButtonClick}> Start Request </button>
+  <!-- <Main /> -->
+</div>

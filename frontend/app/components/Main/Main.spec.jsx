@@ -2,7 +2,7 @@ import React from "react";
 import {findDOMNode} from "react-dom";
 import TestUtils from "react-addons-test-utils";
 
-import Main from "./Main.jsx";
+import Main from "./Main";
 
 describe("Main", () => {
   var component;

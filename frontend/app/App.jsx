@@ -5,12 +5,16 @@ import ReactDOM from "react-dom";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 
-import Main from "./components/Main/Main.jsx";
+import Main from "./components/Main/Main";
+import Async from "./components/Async/Async";
 import rootReducer from "./reducers/root";
 
 ReactDOM.render(
   <Provider store={createStore(rootReducer)}>
-    <Main />
+    <div>
+      <Main />
+      <Async />
+    </div>
   </Provider>,
   document.getElementById("app")
 );

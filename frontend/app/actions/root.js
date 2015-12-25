@@ -3,3 +3,9 @@ export function pressButton() {
     type: "button"
   }
 }
+
+export function throwRequest() {
+  return {
+    type: "throwRequest"
+  }
+}

@@ -28,10 +28,3 @@
 
 - http://hi-ogawa.github.io/randomNumberGenerator/
 - http://screencast.com/t/9QBRWlFG4G0
-
-### TODO
-
-- async request in component
-- routing with user authentication
-- try feature based directory structure
-  - like, `app/` -> `main/` -> `component`, `reducer`, `action`, `rt`, `spec` ...

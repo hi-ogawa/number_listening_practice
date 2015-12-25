@@ -1,3 +1,4 @@
+<!-- <rt-require dependency="../Async/Async.js" as="Async"/> -->
 <div>
   <p>
     {this.pressed ? "true" : "false"}
@@ -6,4 +7,5 @@
   <button
     onClick={this.onButtonClick}
   > + </button>
+  <!-- <Async /> -->
 </div>
