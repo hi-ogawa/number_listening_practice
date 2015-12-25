@@ -18,7 +18,7 @@ const dispatchProps = (dispatch) => {
   }
 };
 
-const Main = (props) => template.bind(props)()
+const Main = (props) => template.call(props)
 
 // NOTE: proptypes is not mandatory with react-redux?
 Main.propTypes = {
