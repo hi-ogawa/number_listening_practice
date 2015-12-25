@@ -31,4 +31,10 @@ const Main = ({pressed, onButtonClick}) => {
   )
 };
 
+// NOTE: proptypes is not mandatory with react-redux?
+Main.propTypes = {
+  pressed: React.PropTypes.bool.isRequired,
+  onButtonClick: React.PropTypes.func.isRequired
+};
+
 export default connect(stateProps, dispatchProps)(Main)
