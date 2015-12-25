@@ -38,6 +38,6 @@ describe("Main", () => {
   it("shows 'true' in p tag", () => {
     expect(
       component.getElementsByTagName("p")[0].textContent
-    ).toEqual("true");
+    ).toContain("true");
   });
 });

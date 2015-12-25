@@ -1,0 +1,9 @@
+<div>
+  <p>
+    {this.pressed ? "true" : "false"}
+  </p>
+  Hello, easy component syntax.
+  <button
+    onClick={this.onButtonClick}
+  > + </button>
+</div>

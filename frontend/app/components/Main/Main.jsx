@@ -1,7 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 
-import {pressButton} from "../actions/root";
+import template from "./Main.rt";
+import {pressButton} from "../../actions/root";
 
 const stateProps = (state) => {
   return {
@@ -17,19 +18,7 @@ const dispatchProps = (dispatch) => {
   }
 };
 
-const Main = ({pressed, onButtonClick}) => {
-  return (
-    <div>
-      <p>
-        {pressed ? "true" : "false"}
-      </p>
-      Hello, easy component syntax.
-      <button
-        onClick={onButtonClick}
-      > + </button>
-    </div>
-  )
-};
+const Main = (props) => template.bind(props)()
 
 // NOTE: proptypes is not mandatory with react-redux?
 Main.propTypes = {

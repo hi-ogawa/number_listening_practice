@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "./node_modules/karma-cli/bin/karma start",
     "start": "./node_modules/.bin/webpack-dev-server --watch --progress --colors --content-base build"
   },
   "author": "",
@@ -36,6 +37,8 @@
     "less-loader": "^2.2.2",
     "lodash": "^3.10.1",
     "react-addons-test-utils": "^0.14.3",
+    "react-templates": "^0.3.2",
+    "react-templates-loader": "^0.3.1",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.9",
