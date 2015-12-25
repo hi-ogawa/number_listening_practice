@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 
 import template from "./Main.rt";
 import {pressButton} from "../../actions/root";
+import Async from "../Async/Async.js"
+
 
 const stateProps = (state) => {
   return {
@@ -18,22 +20,13 @@ const dispatchProps = (dispatch) => {
   }
 };
 
-// import Async from "../Async/Async"
-// const Main = (props) => {
-//   return (
-//     <div>
-//       <p>
-//         {props.pressed ? "true" : "false"}
-//       </p>
-//       Hello, easy component syntax.
-//       <button
-//         onClick={props.onButtonClick}
-//       > + </button>
-//       <Async />
-//     </div>
-//   )
-// }
-const Main = (props) => template.call(props)
+const Main = ({pressed, onButtonClick}) => {
+  return template.call({
+    pressed,
+    onButtonClick,
+    Async
+  });
+}
 
 // NOTE: proptypes is not mandatory with react-redux?
 Main.propTypes = {
