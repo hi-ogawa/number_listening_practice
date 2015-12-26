@@ -15,10 +15,6 @@ module.exports = {
           presets: ["react", "es2015"]
         }
       },
-      {
-        test: /\.rt$/,
-        loader: "react-templates-loader"
-      },
       // NOTE: copied from http://bline.github.io/bootstrap-webpack-example/
       { test: /\.woff2?$/, loader: "url?limit=10000&minetype=application/font-woff" },
       { test: /\.ttf$/,    loader: "url?limit=10000&minetype=application/octet-stream" },

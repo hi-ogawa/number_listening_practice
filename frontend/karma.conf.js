@@ -23,10 +23,6 @@ module.exports = function (config) {
             query: {
               presets: ["react", "es2015"]
             }
-          },
-          {
-            test: /\.rt$/,
-            loader: "react-templates-loader"
           }
         ],
       }
