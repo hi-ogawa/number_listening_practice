@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 
-import template from "./Main.rt";
 import {pressButton} from "../../actions/root";
 import Async from "../Async/Async.jsx"
 
@@ -20,15 +19,19 @@ const dispatchProps = (dispatch) => {
   }
 };
 
-const Main = ({pressed, onButtonClick}) => {
-  return template.call({
-    pressed,
-    onButtonClick,
-    Async
-  });
-}
+const Main = ({pressed, onButtonClick}) => (
+  <div>
+    <p>
+      {pressed ? "true" : "false"}
+    </p>
+    Hello, easy component syntax.
+    <button
+      onClick={onButtonClick}
+    > + </button>
+    <Async />
+  </div>
+);
 
-// NOTE: proptypes is not mandatory with react-redux?
 Main.propTypes = {
   pressed: React.PropTypes.bool.isRequired,
   onButtonClick: React.PropTypes.func.isRequired

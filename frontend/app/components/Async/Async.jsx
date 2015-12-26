@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 
-import template from "./Async.rt";
 import PreJSON from "../PreJSON.jsx";
 import {throwRequest} from "../../actions/root";
 
@@ -20,17 +19,13 @@ const dispatchProps = (dispatch) => {
   }
 };
 
-const Async = (props) => {
-// NOTE: rt seems not be able to pass an object to nested component
-//  return template.call(
-//    Object.assign({PreJSON}, props)
-//  );
+const Async = ({onRequestButtonClick, requestState, resp}) => {
   return (
     <div>
-      <button onClick={props.onRequestButtonClick}> Start Request </button>
+      <button onClick={onRequestButtonClick}> Start Request </button>
       <div>
       {(() => {
-        switch(props.requestState){
+        switch(requestState){
           case "NOT_STARTED":
             return "not started";
           case "STARTED":
@@ -39,8 +34,8 @@ const Async = (props) => {
             return (
               <div>
                 "finished"
-                <img src={props.resp.data.avatar} />
-                <PreJSON json={props.resp.data}/>
+                <img src={resp.data.avatar} />
+                <PreJSON json={resp.data}/>
               </div>
             );
           case "ERROR":
