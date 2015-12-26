@@ -27,6 +27,24 @@ const async = (state = {requestState: "NOT_STARTED"}, action) => {
 
 const login = (state = {user: null, requestState: "NOT_STARTED"}, action) => {
   switch (action.type) {
+  case "VALIDATE_JWT":
+    switch (action.status) {
+    case "waiting":
+      return {
+        user: null,
+        requestState: "NOT_STARTED"
+      }
+    case "success":
+      return {
+        user: action.resp.data.user,
+        requestState: "FINISHED"
+      }
+    case "error":
+      return {
+        user: null,
+        requestState: "NOT_STARTED"
+      }
+    }
   case "LOGOUT":
     setToken();
     return {

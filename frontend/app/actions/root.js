@@ -1,4 +1,4 @@
-import {getRandomUser, loginUser} from "../utils/helper";
+import {getRandomUser, loginUser, getUser} from "../utils/helper";
 
 export function pressButton() {
   return {
@@ -10,9 +10,34 @@ export function logout() {
   return {
     type: "LOGOUT"
   };
+};
+
+export function initialUserCheck() {
+  return dispatch => {
+    dispatch({
+      type: "VALIDATE_JWT",
+      status: "waiting"
+    });
+    return getUser()
+      .then((resp) => {
+        dispatch({
+          type: "VALIDATE_JWT",
+          status: "success",
+          resp
+        })
+      })
+      .catch((resp) => {
+        dispatch({
+          type: "VALIDATE_JWT",
+          status: "error",
+          resp
+        })
+      });
+  }
 }
 
 // NOTE: redux-thunk: https://github.com/rackt/redux/blob/master/examples/async/actions/index.js#L38-L45
+// TODO: generalize for any async actions
 export function throwRequest(requestType, asyncFunction, args) {
   return dispatch => {
     dispatch({

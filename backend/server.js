@@ -20,7 +20,10 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
-// TODO: I really don't understand how token is validated with the certain user.
+// TODO: don't we need expiration date or those stuff for this token practically?
+//       definitely need to learn about jwt more deeply.
+//       if there's expiration, we need to change frontend logic too accordingly.
+//       so expiration thing matters here, learn quickly.
 app.use(expressJwt({secret: jwtSecret}).unless({path: ["/login"]}));
 
 app.get("/random-user", function(req, res) {
@@ -36,6 +39,16 @@ app.post("/login", authenticate, function(req, res) {
   }, jwtSecret);
   res.end(JSON.stringify({
     token: token,
+    user: user
+  }));
+});
+
+app.post("/me", function(req, res) {
+  // NOTE: in real situation, you need to match up req.user.username with database, not only "hiroshi"
+  if(req.user.username !== user.username) {
+    res.status(401).end("you have to be hiroshi.");
+  }
+  res.end(JSON.stringify({
     user: user
   }));
 });
