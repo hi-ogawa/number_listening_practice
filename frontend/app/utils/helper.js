@@ -5,7 +5,7 @@ export function getRandomUser({}) {
 };
 
 export function loginUser({username, password}) {
-  return axios.post("http://localhost:300/login", {
+  return axios.post("http://localhost:3000/login", {
     username, password
   });
 };

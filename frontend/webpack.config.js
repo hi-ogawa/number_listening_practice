@@ -28,5 +28,9 @@ module.exports = {
     preLoaders: [
       {test: /\.jsx?$/, loader: "eslint", exclude: /node_modules/}
     ]
+  },
+  eslint: {
+    configFile: ".eslintrc",
+    emitWarning: true
   }
 }
