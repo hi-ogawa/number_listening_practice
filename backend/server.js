@@ -21,7 +21,7 @@ app.get("/random-user", function(req, res) {
 });
 
 app.post("/login", authenticate, function(req, res) {
-  res.send(user);
+  res.end(JSON.stringify(user));
 });
 
 app.listen(3000, function(){
