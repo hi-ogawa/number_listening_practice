@@ -1,4 +1,4 @@
-import {getUserInfo} from "../utils/helper";
+import {getRandomUser} from "../utils/helper";
 
 export function pressButton() {
   return {
@@ -10,7 +10,7 @@ export function pressButton() {
 export function throwRequest() {
   return dispatch => {
     dispatch({type: "THROW_REQUEST"});
-    return getUserInfo("hi-ogawa")
+    return getRandomUser()
       .then((resp) => {
         dispatch(receiveRequestSuccess(resp));
       })

@@ -39,7 +39,7 @@ const Async = (props) => {
             return (
               <div>
                 "finished"
-                <img src={props.resp.data.avatar_url} />
+                <img src={props.resp.data.avatar} />
                 <PreJSON json={props.resp.data}/>
               </div>
             );
