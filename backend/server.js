@@ -2,6 +2,10 @@ var express = require("express");
 var faker = require("faker");
 var cors = require("cors");
 var bodyParser = require("body-parser");
+var jwt = require("jsonwebtoken");
+
+// NOTE: in real situation, this should be given runtime.
+var jwtSecret = "fghjkkh";
 
 var user = {
   username: "hiroshi",
@@ -21,7 +25,14 @@ app.get("/random-user", function(req, res) {
 });
 
 app.post("/login", authenticate, function(req, res) {
-  res.end(JSON.stringify(user));
+  // NOTE: in real situation, more parameters should be passed to generate a token.
+  var token = jwt.sign({
+    username: req.body.username
+  }, jwtSecret);
+  res.end(JSON.stringify({
+    token: token,
+    user: user
+  }));
 });
 
 app.listen(3000, function(){
