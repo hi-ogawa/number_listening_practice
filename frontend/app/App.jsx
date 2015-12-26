@@ -7,7 +7,6 @@ import thunk from "redux-thunk";
 import {Provider} from "react-redux";
 
 import Main from "./components/Main/Main";
-import Async from "./components/Async/Async";
 import rootReducer from "./reducers/root";
 
 const createStoreWithMiddleware = applyMiddleware(

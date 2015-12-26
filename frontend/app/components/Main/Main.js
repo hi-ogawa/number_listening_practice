@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import template from "./Main.rt";
 import {pressButton} from "../../actions/root";
-import Async from "../Async/Async.js"
+import Async from "../Async/Async.jsx"
 
 
 const stateProps = (state) => {
