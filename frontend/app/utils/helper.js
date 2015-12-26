@@ -26,6 +26,10 @@ const tokenAddingInterceptor = (config) => {
   if (token) {
     config.headers = config.headers || {};
     config.headers.Authorization = `Bearer ${token}`;
+  } else {
+    // NOTE: config headers are kept between requests, so we need to explicitly reset it.
+    config.headers = config.headers || {};
+    config.headers.Authorization = "";
   }
   return config;
 };

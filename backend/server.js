@@ -3,6 +3,7 @@ var faker = require("faker");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 var jwt = require("jsonwebtoken");
+var expressJwt = require("express-jwt");
 
 // NOTE: in real situation, this should be given runtime.
 var jwtSecret = "fghjkkh";
@@ -13,10 +14,14 @@ var user = {
 }
 
 var app = express();
+
 app.use(cors({
   origin: "http://localhost:8080"
 }));
 app.use(bodyParser.json());
+
+// TODO: I really don't understand how token is validated with the certain user.
+app.use(expressJwt({secret: jwtSecret}).unless({path: ["/login"]}));
 
 app.get("/random-user", function(req, res) {
   var user = faker.helpers.createCard();
