@@ -1,4 +1,5 @@
 import {combineReducers} from "redux";
+import {setToken} from "../utils/helper";
 
 const main = (state = {pressed: true}, action) => {
   switch (action.type) {
@@ -24,16 +25,35 @@ const async = (state = {requestState: "NOT_STARTED"}, action) => {
   }
 }
 
-const login = (state = {requestState: "NOT_STARTED"}, action) => {
+const login = (state = {user: null, requestState: "NOT_STARTED"}, action) => {
+  switch (action.type) {
+  case "LOGOUT":
+    setToken();
+    return {
+      requestState: "NOT_STARTED",
+      user: null
+    }
+  }
   if(action.requestType !== "LOGIN_USER"){return state;};
   switch (action.type) {
   case "THROW_REQUEST":
-    return {requestState: "STARTED"};
-  case "RECEIVE_REQUEST":
     return {
-      requestState: (action.status === "success" ? "FINISHED" : "ERROR"),
-      resp: action.resp
+      requestState: "STARTED",
+      user: null
     };
+  case "RECEIVE_REQUEST":
+    if (action.status === "success") {
+      setToken(action.resp.data.token);
+      return {
+        requestState: "FINISHED",
+        user: action.resp.data.user
+      }
+    }else{
+      return {
+        requestState: "ERROR",
+        user: null
+      }
+    }
   default:
     return state;
   }

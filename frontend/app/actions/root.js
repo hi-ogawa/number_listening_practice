@@ -6,6 +6,12 @@ export function pressButton() {
   };
 };
 
+export function logout() {
+  return {
+    type: "LOGOUT"
+  };
+}
+
 // NOTE: redux-thunk: https://github.com/rackt/redux/blob/master/examples/async/actions/index.js#L38-L45
 export function throwRequest(requestType, asyncFunction, args) {
   return dispatch => {

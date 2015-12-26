@@ -1,12 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
 
-import {throwRequest} from "../actions/root";
+import {throwRequest, logout} from "../actions/root";
 import {loginUser} from "../utils/helper";
 
 const stateProps = (state) => {
   return {
-    requestState: state.login.requestState
+    requestState: state.login.requestState,
+    user: state.login.user
   }
 };
 
@@ -14,20 +15,25 @@ const dispatchProps = (dispatch) => {
   return {
     login(username, password) {
       dispatch(throwRequest("LOGIN_USER", loginUser, {username, password}));
+    },
+    logout() {
+      dispatch(logout());
     }
   }
 };
 
-const Login = ({login, requestState}) => {
+const Login = ({login, logout, requestState, user}) => {
   var usernameRef;
   var passwordRef;
   const loginWithoutRefresh = (e) => {
     e.preventDefault();
     login(usernameRef.value, passwordRef.value);
   };
-  // NOTE: https://facebook.github.io/react/docs/more-about-refs.html#the-ref-callback-attribute
-  //  > The ref attribute can be a callback function, and
-  //  > this callback will be executed immediately after the component is mounted.
+  const logoutWithClearInput = (e) => {
+    usernameRef.value = "";
+    passwordRef.value = "";
+    logout();
+  };
   return (
     <div>
       <form onSubmit={loginWithoutRefresh}>
@@ -35,8 +41,14 @@ const Login = ({login, requestState}) => {
         <input type="password" ref={(ref) => passwordRef = ref} />
         <button type="submit"> Login </button>
       </form>
+      { requestState == "NOT_STARTED" ? "let's login!" : ""}
       { requestState == "STARTED" ? "waiting" : ""}
-      { requestState == "FINISHED" ? "you're logged in" : ""}
+      { requestState == "FINISHED" ?
+        <div>
+          you're logged in: {user.username}
+          <button onClick={logoutWithClearInput}> Logout </button>
+        </div>
+        : ""}
       { requestState == "ERROR" ? "you're a wrong person :(" : ""}
     </div>
   );
@@ -44,7 +56,9 @@ const Login = ({login, requestState}) => {
 
 Login.propTypes = {
   login: React.PropTypes.func.isRequired,
-  requestState: React.PropTypes.string.isRequired
+  logout: React.PropTypes.func.isRequired,
+  requestState: React.PropTypes.string.isRequired,
+  user: React.PropTypes.object,
 };
 
 export default connect(stateProps, dispatchProps)(Login);
