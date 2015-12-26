@@ -1,4 +1,4 @@
-import {getRandomUser, loginUser, getUser} from "../utils/helper";
+import {validateAndRefreshToken} from "../utils/helper";
 
 export function pressButton() {
   return {
@@ -12,13 +12,32 @@ export function logout() {
   };
 };
 
-export function initialUserCheck() {
+export function periodicalTokenRefresh() {
+  return dp => {
+    validateAndRefreshToken()
+      .then((resp) => {
+        dp({
+          type: "TOKEN_REFRESH",
+          status: "success",
+          resp
+        });
+      })
+      .catch((resp) => {
+        dp({
+          type: "TOKEN_REFRESH",
+          status: "error"
+        });
+      });
+  }
+}
+
+export function initialTokenRefresh() {
   return dispatch => {
     dispatch({
       type: "VALIDATE_JWT",
       status: "waiting"
     });
-    return getUser()
+    return validateAndRefreshToken()
       .then((resp) => {
         dispatch({
           type: "VALIDATE_JWT",

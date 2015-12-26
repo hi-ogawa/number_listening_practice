@@ -8,7 +8,8 @@ import {Provider} from "react-redux";
 
 import Main from "./components/Main/Main.jsx";
 import rootReducer from "./reducers/root";
-import {initialUserCheck} from "./actions/root";
+import {initialTokenRefresh, periodicalTokenRefresh} from "./actions/root";
+import {getToken} from "./utils/helper";
 
 const createStoreWithMiddleware = applyMiddleware(
   thunk
@@ -25,4 +26,14 @@ ReactDOM.render(
   document.getElementById("app")
 );
 
-store.dispatch(initialUserCheck());
+store.dispatch(initialTokenRefresh());
+
+// TODO: what if this periodical refreshing returns error because of trivial network cutoff?
+//       so we shouldn't redirect user to login page even if this action returns error.
+//       (just showing some error message like trello.)
+window.setInterval(() => {
+  if (getToken()) {
+    store.dispatch(periodicalTokenRefresh());
+  }
+  // NOTE: practically, about one hour to refresh token
+}, 5000);

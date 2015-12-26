@@ -3,6 +3,7 @@ import axios from "axios";
 
 
 // authorization token management
+// TODO: upon unauthorized status, we need to automatically let user logout?
 export const setToken = (token) => {
   if (token) {
     store.set("auth-token", token);
@@ -11,7 +12,7 @@ export const setToken = (token) => {
   }
 }
 
-const getToken = () => {
+export const getToken = () => {
   return store.get("auth-token");
 }
 
@@ -53,6 +54,6 @@ export function loginUser({username, password}) {
 //  first login request action ----------> render anonymous page (anynomous page state)
 //  receiving response action  --success-> render user centric page (user centric page state)
 //                             --error---> keep anonymous page
-export function getUser() {
-  return instance.post("me");
+export function validateAndRefreshToken() {
+  return instance.get("refresh_token");
 };

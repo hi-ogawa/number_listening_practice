@@ -25,6 +25,28 @@ const async = (state = {requestState: "NOT_STARTED"}, action) => {
   }
 }
 
+const periodicTasks = (state = {status: "success"}, action) => {
+  switch (action.type) {
+  case "TOKEN_REFRESH":
+    console.log(action);
+    switch (action.status) {
+    case "success":
+      setToken(action.resp.data.token);
+      return {
+        status: "success"
+      }
+    case "error":
+      console.error("there's something wrong.");
+      return {
+        status: "error"
+      }
+    }
+  default:
+    return state;
+  }
+}
+
+
 const login = (state = {user: null, requestState: "NOT_STARTED"}, action) => {
   switch (action.type) {
   case "VALIDATE_JWT":
@@ -35,6 +57,7 @@ const login = (state = {user: null, requestState: "NOT_STARTED"}, action) => {
         requestState: "NOT_STARTED"
       }
     case "success":
+      setToken(action.resp.data.token);
       return {
         user: action.resp.data.user,
         requestState: "FINISHED"
@@ -80,5 +103,6 @@ const login = (state = {user: null, requestState: "NOT_STARTED"}, action) => {
 export default combineReducers({
   main,
   async: async, // NOTE: `async` might be recognized as a special keyword.
-  login
+  login,
+  periodicTasks
 });

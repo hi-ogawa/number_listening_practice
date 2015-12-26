@@ -36,19 +36,29 @@ app.post("/login", authenticate, function(req, res) {
   // NOTE: in real situation, more parameters should be passed to generate a token.
   var token = jwt.sign({
     username: req.body.username
-  }, jwtSecret);
+  }, jwtSecret, {
+    // NOTE: practically, "7d" or something and call refresh token "1h" from frontend
+    expiresIn: "6s"
+  });
   res.end(JSON.stringify({
     token: token,
     user: user
   }));
 });
 
-app.post("/me", function(req, res) {
+// endpoint only for refresh token with prolonged expiration
+app.get("/refresh_token", function(req, res) {
   // NOTE: in real situation, you need to match up req.user.username with database, not only "hiroshi"
   if(req.user.username !== user.username) {
     res.status(401).end("you have to be hiroshi.");
   }
+  var refreshed_token = jwt.sign({
+    username: user.username
+  }, jwtSecret, {
+    expiresIn: "6s" // "7d"
+  });
   res.end(JSON.stringify({
+    token: refreshed_token,
     user: user
   }));
 });
