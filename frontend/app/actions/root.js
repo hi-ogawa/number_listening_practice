@@ -1,4 +1,4 @@
-import {getRandomUser} from "../utils/helper";
+import {getRandomUser, loginUser} from "../utils/helper";
 
 export function pressButton() {
   return {
@@ -6,32 +6,30 @@ export function pressButton() {
   };
 };
 
-// redux-thunk: https://github.com/rackt/redux/blob/master/examples/async/actions/index.js#L38-L45
-export function throwRequest() {
+// NOTE: redux-thunk: https://github.com/rackt/redux/blob/master/examples/async/actions/index.js#L38-L45
+export function throwRequest(requestType, asyncFunction, args) {
   return dispatch => {
-    dispatch({type: "THROW_REQUEST"});
-    return getRandomUser()
+    dispatch({
+      type: "THROW_REQUEST",
+      requestType,
+      args
+    });
+    return asyncFunction(args)
       .then((resp) => {
-        dispatch(receiveRequestSuccess(resp));
+        dispatch({
+          type: "RECEIVE_REQUEST",
+          requestType,
+          status: "success",
+          resp
+        });
       })
       .catch((resp) => {
-        dispatch(receiveRequestError(resp));
+        dispatch({
+          type: "RECEIVE_REQUEST",
+          requestType,
+          status: "error",
+          resp
+        });
       });
   };
-};
-
-export function receiveRequestSuccess(resp) {
-  return {
-    type: "RECEIVE_REQUEST",
-    status: "success",
-    resp
-  };
-};
-
-export function receiveRequestError(resp) {
-  return {
-    type: "RECEIVE_REQUEST",
-    status: "error",
-    resp
-  }
 }

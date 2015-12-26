@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 import PreJSON from "../PreJSON.jsx";
 import {throwRequest} from "../../actions/root";
+import {getRandomUser} from "../../utils/helper";
 
 const stateProps = (state) => {
   return {
@@ -14,7 +15,7 @@ const stateProps = (state) => {
 const dispatchProps = (dispatch) => {
   return {
     onRequestButtonClick() {
-      dispatch(throwRequest());
+      dispatch(throwRequest("GET_RANDOM_USER", getRandomUser, {}));
     }
   }
 };

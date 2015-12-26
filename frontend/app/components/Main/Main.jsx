@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 import {pressButton} from "../../actions/root";
 import Async from "../Async/Async.jsx"
+import Login from "../Login.jsx"
 
 
 const stateProps = (state) => {
@@ -29,6 +30,7 @@ const Main = ({pressed, onButtonClick}) => (
       onClick={onButtonClick}
     > + </button>
     <Async />
+    <Login />
   </div>
 );
 
