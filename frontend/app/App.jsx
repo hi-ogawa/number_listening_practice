@@ -1,4 +1,4 @@
-import "!style!css!less!bootstrap/less/bootstrap.less"
+import "!style!css!less!bootstrap/less/bootstrap.less";
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -35,5 +35,4 @@ window.setInterval(() => {
   if (getToken()) {
     store.dispatch(periodicalTokenRefresh());
   }
-  // NOTE: practically, about one hour to refresh token
-}, 5000);
+}, 60 * 60 * 1000);

@@ -37,8 +37,7 @@ app.post("/login", authenticate, function(req, res) {
   var token = jwt.sign({
     username: req.body.username
   }, jwtSecret, {
-    // NOTE: practically, "7d" or something and call refresh token "1h" from frontend
-    expiresIn: "6s"
+    expiresIn: "7d"
   });
   res.end(JSON.stringify({
     token: token,
@@ -55,7 +54,7 @@ app.get("/refresh_token", function(req, res) {
   var refreshed_token = jwt.sign({
     username: user.username
   }, jwtSecret, {
-    expiresIn: "6s" // "7d"
+    expiresIn: "7d"
   });
   res.end(JSON.stringify({
     token: refreshed_token,
