@@ -1,8 +1,9 @@
 module.exports = {
   entry: "./app/App.jsx",
   output: {
-    path: __dirname + "/build",
-    filename: "bundle.js"
+    path: "/build/assets/",
+    publicPath: "/assets/",
+    filename: "bundle.js",
   },
   devtool: 'source-map',
   module: {
