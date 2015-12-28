@@ -20,7 +20,7 @@ const dispatchProps = (dispatch) => {
   }
 };
 
-const Main = ({pressed, onButtonClick}) => (
+const Main = ({pressed, onButtonClick, children}) => (
   <div>
     <p>
       {pressed ? "true" : "false"}
@@ -31,6 +31,7 @@ const Main = ({pressed, onButtonClick}) => (
     > + </button>
     <Async />
     <Login />
+    {children}
   </div>
 );
 
