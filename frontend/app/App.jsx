@@ -2,26 +2,36 @@ import "!style!css!less!bootstrap/less/bootstrap.less";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore, applyMiddleware} from "redux";
+import {createStore, applyMiddleware, combineReducers} from "redux";
 import thunk from "redux-thunk";
 import {Provider} from "react-redux";
+import {Router, Route} from "react-router";
+import {createHistory} from "history";
+import {syncReduxAndRouter, routeReducer} from "redux-simple-router";
 
-import Main from "./components/Main/Main.jsx";
-import rootReducer from "./reducers/root";
+import rootReducers from "./reducers/root";
 import {initialTokenRefresh, periodicalTokenRefresh} from "./actions/root";
 import {getToken} from "./utils/helper";
+import routes from "./config/routes.jsx";
 
 const createStoreWithMiddleware = applyMiddleware(
   thunk
 )(createStore);
 
-const store = createStoreWithMiddleware(rootReducer);
+const store = createStoreWithMiddleware(
+  combineReducers(Object.assign({}, rootReducers, {
+    routing: routeReducer
+  }))
+);
+const history = createHistory();
+
+syncReduxAndRouter(history, store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
-      <Main />
-    </div>
+    <Router history={history}>
+      {routes}
+    </Router>
   </Provider>,
   document.getElementById("app")
 );

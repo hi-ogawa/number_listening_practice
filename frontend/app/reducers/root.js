@@ -100,9 +100,9 @@ const login = (state = {user: null, requestState: "NOT_STARTED"}, action) => {
   }
 }
 
-export default combineReducers({
+export default {
   main,
   async: async, // NOTE: `async` might be recognized as a special keyword.
   login,
   periodicTasks
-});
+};
